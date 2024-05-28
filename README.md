@@ -1,1 +1,2 @@
-# Food-App
+#About Food App
+The Food App is a dynamic web application built with Node.js and MongoDB, designed to help users manage and explore a variety of food items and recipes. Featuring user authentication and authorization, it allows users to securely register and log in, manage their profiles, and perform CRUD operations on food items and recipes. With a responsive design, the app ensures a seamless experience across both mobile and desktop devices. Whether you're looking to discover new recipes or manage your personal collection, the Food App provides a robust and user-friendly platform for all your culinary needs.
