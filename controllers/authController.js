@@ -5,7 +5,7 @@ const JWT = require('jsonwebtoken');
 const registreController = async (req, res) => {
     try{
         const {userName, password, email, phone, address } = req.body;
-        if(!userName || !email || !password || !phone || !address){
+        if(!userName || !email || !password || !phone || !address || !answer){
             return res.status(500).send({
                 success: false,
                 message : 'please Provide All field' 
@@ -15,7 +15,7 @@ const registreController = async (req, res) => {
         if(existingUser){
             return res.status(500).send({
                 success: false,
-                maesage : 'user exist' 
+                message : 'user exist' 
             });
         }
         var salt = bcrypt.genSaltSync(10);
@@ -23,7 +23,12 @@ const registreController = async (req, res) => {
         const user = await userModel.create({userName, email, password: hashedPassword, address, phone})
         res.status(201).send({
             success: true,
-            message : 'Successfelly registered please Log in' 
+            message : 'Successfelly registered please Log in',
+            userName,
+            password,
+            address,
+            phone,
+            answer, 
 
         })
     }catch(error){
