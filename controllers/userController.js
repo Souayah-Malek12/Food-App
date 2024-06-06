@@ -108,7 +108,7 @@ const updatePasswordController = async (req, res) => {
             });
         }
         
-        const isMatch = await bcrypt.compare(oldPassword, user.password); // Compare with user's current password
+        const isMatch = await bcrypt.compare(oldPassword, user.password); 
         if (!isMatch) {
             return res.status(400).send({
                 success: false,
@@ -136,5 +136,28 @@ const updatePasswordController = async (req, res) => {
     }
 };
 
+const deleteProfileController = async(req, res)=> {
+    try{
+        const user = await userModel.findByIdAndDelete(req.params.id);
+        return res.status(200).send({
+            success: true,
+            message: "Your account has been deleted  "
+        })
+        if (!user) {
+            return res.status(404).send({
+                success: false,
+                message: "User Not found"
+            });
+        }
 
-module.exports= {getUserConroller, updateUserController, resetPasswordController, updatePasswordController}
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error in Delete password API",
+            error
+        });
+    }
+}
+
+module.exports= {getUserConroller, deleteProfileController, updateUserController, resetPasswordController, updatePasswordController}
